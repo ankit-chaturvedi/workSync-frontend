@@ -8,6 +8,7 @@ import Link from "next/link";
 
 
 
+
 export default function Login() {
 
   const vantaRef = useRef(null);
@@ -18,7 +19,7 @@ export default function Login() {
   useEffect(() => {
     const loadVanta = async () => {
       const THREE = await import("three");
-      const FOG = (await import("vanta/dist/vanta..min.js")).default;
+      const FOG = (await import("vanta/dist/vanta.fog.min.js")).default;
 
       if (FOG) {
         vantaInstance.current = FOG({
