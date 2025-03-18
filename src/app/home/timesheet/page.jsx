@@ -19,47 +19,47 @@ function Timesheet() {
     
     
     
-        useEffect(() => {
-            const checkAuth = async () => {
-              const token = localStorage.getItem("worksync_token");
+        // useEffect(() => {
+        //     const checkAuth = async () => {
+        //       const token = localStorage.getItem("worksync_token");
         
-              if (!token) {
-                router.replace("/"); 
-                return;
-              }
+        //       if (!token) {
+        //         router.replace("/"); 
+        //         return;
+        //       }
         
-              try {
-                const response = await fetch("http://127.0.0.1:9898/logincheck", {
-                  method: "GET",
-                  headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                  },
-                });
+        //       try {
+        //         const response = await fetch("http://127.0.0.1:9898/logincheck", {
+        //           method: "GET",
+        //           headers: {
+        //             "Authorization": `Bearer ${token}`,
+        //             "Content-Type": "application/json",
+        //           },
+        //         });
         
-                if (!response.ok) {
-                  localStorage.removeItem("worksync_token")
-                  router.push("/")
-                } else {
-                  setLoading(false); 
-                }
-              } catch (error) {
-                console.error("Error validating token:", error);
-                localStorage.removeItem("worksync_token");
-                router.push("/")
-              }
-            };
+        //         if (!response.ok) {
+        //           localStorage.removeItem("worksync_token")
+        //           router.push("/")
+        //         } else {
+        //           setLoading(false); 
+        //         }
+        //       } catch (error) {
+        //         console.error("Error validating token:", error);
+        //         localStorage.removeItem("worksync_token");
+        //         router.push("/")
+        //       }
+        //     };
         
-            checkAuth();
-          }, [router]);
+        //     checkAuth();
+        //   }, [router]);
     
-          if (loading) {
-            return (
-                <div className="flex items-center justify-center min-h-screen bg-gray-900">
-                    <span className="loading loading-infinity w-48 text-white"></span>
-                </div>
-            );
-          }
+        //   if (loading) {
+        //     return (
+        //         <div className="flex items-center justify-center min-h-screen bg-gray-900">
+        //             <span className="loading loading-infinity w-48 text-white"></span>
+        //         </div>
+        //     );
+        //   }
     return(
         <>
         <div className="timesheet w-full bg-slate-700 min-h-screen flex flex-col  gap-4 p-4 ">

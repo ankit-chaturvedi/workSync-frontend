@@ -16,41 +16,41 @@ function Sidebar(){
 
 
 
-    useEffect(() => {
-            const checkAuth = async () => {
-              const token = localStorage.getItem("worksync_token");
+    // useEffect(() => {
+    //         const checkAuth = async () => {
+    //           const token = localStorage.getItem("worksync_token");
         
-              if (!token) {
-                router.replace("/"); 
-                return;
-              }
+    //           if (!token) {
+    //             router.replace("/"); 
+    //             return;
+    //           }
         
-              try {
-                const response = await fetch("http://127.0.0.1:9898/logincheck", {
-                  method: "GET",
-                  headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                  },
-                });
+    //           try {
+    //             const response = await fetch("http://127.0.0.1:9898/logincheck", {
+    //               method: "GET",
+    //               headers: {
+    //                 "Authorization": `Bearer ${token}`,
+    //                 "Content-Type": "application/json",
+    //               },
+    //             });
         
-                if (!response.ok) {
-                  localStorage.removeItem("worksync_token")
-                  router.push("/")
-                } else {
-                  setLoading(false); 
-                }
-              } catch (error) {
-                console.error("Error validating token:", error);
-                localStorage.removeItem("worksync_token");
-                router.push("/")
-              }
-            };
+    //             if (!response.ok) {
+    //               localStorage.removeItem("worksync_token")
+    //               router.push("/")
+    //             } else {
+    //               setLoading(false); 
+    //             }
+    //           } catch (error) {
+    //             console.error("Error validating token:", error);
+    //             localStorage.removeItem("worksync_token");
+    //             router.push("/")
+    //           }
+    //         };
         
-            checkAuth();
-          }, [router]);
+    //         checkAuth();
+    //       }, [router]);
     
-          if (loading) return null;
+    //       if (loading) return null;
 
           const navItems = [
             { name: "Home", href: "/home", icon: <House /> },
