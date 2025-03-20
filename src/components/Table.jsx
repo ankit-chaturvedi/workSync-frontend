@@ -4,7 +4,7 @@ function Table(params) {
 
     return(
         <>
-            <div className="overflow-x-auto max-h-48 text-slate-200 bg-slate-900">
+            <div className="overflow-x-auto h-full text-slate-200 bg-slate-900">
                 <table className="table text-slate-900">
                     {/* head */}
                     <thead>

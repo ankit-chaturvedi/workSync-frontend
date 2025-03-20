@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Table from "@/components/Table"
-import { Pencil, Plus, SendHorizonal} from 'lucide-react';
+import { Pencil, Plus, SendHorizonal, CircleX} from 'lucide-react';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 
@@ -16,6 +16,7 @@ function Timesheet() {
 
     const [loading, setLoading] = useState(true)
     const router = useRouter();
+    const [isActive, setIsActive] = useState(true)
     
     
     
@@ -60,14 +61,30 @@ function Timesheet() {
         //         </div>
         //     );
         //   }
+
+        function toggleVisibility(){
+            setIsActive(!isActive)
+            console.log((isActive));
+            
+            
+        }
+
+       
+
+
+
     return(
         <>
-        <div className="timesheet w-full bg-slate-700 min-h-screen flex flex-col  gap-4 p-4 ">
-            <div className="new_work w-full bg-slate-900 flex-grow rounded-lg text-slate-200 flex flex-col items-start justify-start">
-                <form action="" className="w-full h-full  flex flex-col justify-center pt-4 px-4 gap-4 ">
-                    <h3 className="text-xl">Enter work details</h3>
+        <div className="timesheet w-full bg-slate-700 min-h-screen flex flex-col   gap-4 p-4 ">
+            <div className={`new_work w-full bg-slate-900 px-4 rounded-lg text-slate-200 flex flex-col items-start justify-start ${isActive ? "hidden": ""}`}>
+                <form action="" className="w-full h-full  flex flex-col justify-center pt-4 px-4 gap-2 ">
+                    <div className="work_heading flex items-center justify-between">
+                    <h3 className="text-lg">Enter work details</h3>
+                    <CircleX className="text-red-200 hover:text-slate-200 cursor-pointer" onClick={() => toggleVisibility()}/>
 
-                <div className="entity&activity&worktime flex items-center justify-evenly gap-4 flex-wrap">
+                    </div>
+
+                <div className="entity&activity&worktime flex items-center justify-evenly gap-1 flex-wrap">
                     <select defaultValue="Pick an activity" className="select focus:outline-0 ">
                         <option disabled={true}>Pick an activity</option>
                         <option>Crimson</option>
@@ -107,9 +124,8 @@ function Timesheet() {
                     
                 </div>
 
-                <div className="text-area w-full flex items-center justify-evenly gap-4 flex-wrap">
-                <textarea className="textarea flex-grow focus:outline-0 h-75 text-lg" placeholder="Enter some details about your work"></textarea>
-                <Calendar className="h-75 p-4  text-xs font-extrabold rounded-lg !bg-gray-900 " />
+                <div className="text-area w-full flex items-center h-24 justify-evenly gap-4 flex-wrap">
+                <textarea className="textarea flex-grow focus:outline-0 h-full text-lg" placeholder="Enter some details about your work"></textarea>
                 </div>
 
                 <div className="button flex justify-center items-center gap-8 p-2 flex-wrap">
@@ -120,7 +136,8 @@ function Timesheet() {
             
                 </form>
             </div>
-            <div className="work_stats w-full bg-slate-900 flex flex-col flex-grow min-h-68 items-center justify-center  rounded-lg gap-6  ">
+            <button className={` ${isActive ? "btn w-32" : "btn w-32 hidden"} `} onClick={() => toggleVisibility()}>New Work</button>
+            <div className="work_stats w-full bg-slate-900 p-2 flex flex-col  flex-grow items-center justify-center  rounded-lg gap-6  ">
                 <Table/>
                 <div className="table_submit flex items-center justify-center">
                   <button className='btn bg-emerald-800 hover:bg-slate-200 hover:text-slate-900'><SendHorizonal/> Submit</button>
