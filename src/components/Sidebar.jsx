@@ -66,7 +66,7 @@ function Sidebar(){
 
     return(
         <>
-            <div className="nav-container  w-48 h-screen fixed bg-slate-900 text-slate-200 flex flex-col shadow-lg gap-14 justify-center items-center  ">
+            <div className="nav-container  w-48 h-screen fixed bg-slate-900 text-slate-200 flex flex-col shadow-lg gap-8 md:gap-10 lg:gap-12 justify-center items-center  ">
                 <div className="logo">
                     <Image src={"/workSynclogo.PNG"} width={240} height={240} className="w-full h-auto" alt="logo"/>
                 </div>
